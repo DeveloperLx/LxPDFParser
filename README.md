@@ -1,5 +1,5 @@
 # LxPDFParser
-Simply parse the PDF file's structure. The foundation to come true more complicated function.
+A delightful iOS library. Simply parse the PDF file's structure. The foundation to come true more complicated functions.
 Installation
 ------------
 You only need drag LxPDFParser.h and LxPDFParser.m to your project.
@@ -22,3 +22,6 @@ How to use
 Be careful            
 -----------
     Use NSString object represents NSDictionary object's key and NSNumber object represents NSArray object's index.
+License
+-----------
+    AFNetworking is available under the Apache License 2.0. See the LICENSE file for more info.
