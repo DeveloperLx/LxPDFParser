@@ -172,7 +172,6 @@ void CGPDFArrayApplyFunction(CGPDFArrayRef array, CGPDFArrayApplierFunction func
                 
                 }
                 
-                CGPDFDictionaryGetArray(pdfDictionary, [key UTF8String], &pdfArray);
                 CGPDFArrayApplyFunction(pdfArray, pdfArrayHandler, (__bridge void *)(resultArray));
                 resultValue = resultArray;
             }
