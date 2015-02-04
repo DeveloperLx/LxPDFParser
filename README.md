@@ -24,4 +24,4 @@ Be careful
     Use NSString object represents NSDictionary object's key and NSNumber object represents NSArray object's index.
 License
 -----------
-    AFNetworking is available under the Apache License 2.0. See the LICENSE file for more info.
+    LxPDFParser is available under the Apache License 2.0. See the LICENSE file for more info.
