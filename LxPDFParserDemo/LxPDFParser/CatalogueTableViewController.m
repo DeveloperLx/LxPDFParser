@@ -2,13 +2,15 @@
 //  CatalogueTableViewController.m
 //  LxPDFParser
 //
-//  Created by Gener-health-li.x on 15/2/17.
-//  Copyright (c) 2015年 Gener-health-li.x. All rights reserved.
-//
 
 #import "CatalogueTableViewController.h"
+#import "CatalogueNodeCell.h"
+
+static NSString * CatalogueNodeCellIdentifier = @"CatalogueNodeCellIdentifier";
 
 @interface CatalogueTableViewController ()
+
+@property (nonatomic,strong) NSMutableArray * catalogueNodeArray;
 
 @end
 
@@ -17,100 +19,113 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
+    self.title = @"Catalogue";
+    self.tableView.tableFooterView = [[UIView alloc]init];
     
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    [self.tableView registerClass:[CatalogueNodeCell class] forCellReuseIdentifier:CatalogueNodeCellIdentifier];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (void)setPdfParser:(LxPDFParser *)pdfParser
+{
+    if (_pdfParser != pdfParser) {
+        
+        [self.catalogueNodeArray removeAllObjects];
+        [self.catalogueNodeArray addObject:pdfParser.rootCatalogueNode];
+        
+        _pdfParser = pdfParser;
+    }
+}
+
+- (NSMutableArray *)catalogueNodeArray
+{
+    if (_catalogueNodeArray == nil) {
+        _catalogueNodeArray = [[NSMutableArray alloc]init];
+    }
+    return _catalogueNodeArray;
 }
 
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-#warning Potentially incomplete method implementation.
-    // Return the number of sections.
-    return 0;
+
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-#warning Incomplete method implementation.
-    // Return the number of rows in the section.
-    return 0;
+
+    return self.catalogueNodeArray.count;
 }
 
-/*
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
     
-    // Configure the cell...
+    CatalogueNodeCell *cell = [tableView dequeueReusableCellWithIdentifier:CatalogueNodeCellIdentifier forIndexPath:indexPath];
+    
+    CatalogueNodeModel * catagueNodeModel = self.catalogueNodeArray[indexPath.row];
+    
+    cell.depth = catagueNodeModel.depth;
+    cell.nameLabel.text = catagueNodeModel.name;
     
     return cell;
 }
-*/
 
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-/*
-#pragma mark - Table view delegate
-
-// In a xib-based application, navigation from a table can be handled in -tableView:didSelectRowAtIndexPath:
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Navigation logic may go here, for example:
-    // Create the next view controller.
-    <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:<#@"Nib name"#> bundle:nil];
+
+    CatalogueNodeModel * catagueNodeModel = self.catalogueNodeArray[indexPath.row];
     
-    // Pass the selected object to the new view controller.
+    BOOL childNodeArrayIsOpened = NO;
     
-    // Push the view controller.
-    [self.navigationController pushViewController:detailViewController animated:YES];
+    if (indexPath.row == self.catalogueNodeArray.count - 1) {
+        
+        childNodeArrayIsOpened = NO;
+    }
+    else {
+        CatalogueNodeModel * nextCatagueNodeModel = self.catalogueNodeArray[indexPath.row + 1];
+        childNodeArrayIsOpened = nextCatagueNodeModel.depth > catagueNodeModel.depth;
+    }
+    
+    if (childNodeArrayIsOpened) {
+        
+        NSMutableArray * deleteIndexPathArray = [NSMutableArray array];
+        NSMutableIndexSet * deleteIndexSet = [NSMutableIndexSet indexSet];
+        
+        for (NSInteger i = indexPath.row + 1; i < self.catalogueNodeArray.count; i++) {
+            
+            CatalogueNodeModel * nextCatalogueNodeModel = self.catalogueNodeArray[i];
+            
+            if (nextCatalogueNodeModel.depth > catagueNodeModel.depth) {
+                
+                [deleteIndexSet addIndex:i];
+                
+                [deleteIndexPathArray addObject:[NSIndexPath indexPathForRow:i inSection:0]];
+            }
+        }
+        
+        [self.catalogueNodeArray removeObjectsAtIndexes:deleteIndexSet];
+    
+        [tableView beginUpdates];
+        
+        [tableView deleteRowsAtIndexPaths:deleteIndexPathArray withRowAnimation:UITableViewRowAnimationAutomatic];
+        
+        [tableView endUpdates];
+    }
+    else {
+        
+        NSMutableArray * insertIndexPathArray = [NSMutableArray array];
+        NSMutableIndexSet * insertIndexSet = [NSMutableIndexSet indexSet];
+        
+        for (NSInteger i = 0; i < catagueNodeModel.childNodeArray.count; i++) {
+            NSIndexPath * insertIndexPath = [NSIndexPath indexPathForRow:indexPath.row + i + 1 inSection:0];
+            [insertIndexPathArray addObject:insertIndexPath];
+            [insertIndexSet addIndex:indexPath.row + i + 1];
+        }
+        
+        [self.catalogueNodeArray insertObjects:catagueNodeModel.childNodeArray atIndexes:insertIndexSet];
+        
+        [tableView beginUpdates];
+        
+        [tableView insertRowsAtIndexPaths:insertIndexPathArray withRowAnimation:UITableViewRowAnimationAutomatic];
+        
+        [tableView endUpdates];
+    }
 }
-*/
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
-
 @end

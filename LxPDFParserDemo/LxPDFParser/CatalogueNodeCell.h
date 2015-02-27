@@ -2,12 +2,12 @@
 //  CatalogueNodeCell.h
 //  LxPDFParser
 //
-//  Created by Gener-health-li.x on 15/2/17.
-//  Copyright (c) 2015年 Gener-health-li.x. All rights reserved.
-//
 
 #import <UIKit/UIKit.h>
 
 @interface CatalogueNodeCell : UITableViewCell
+
+@property (nonatomic,assign) NSUInteger depth;
+@property (nonatomic,strong) UILabel *nameLabel;
 
 @end

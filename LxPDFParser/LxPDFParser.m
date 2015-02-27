@@ -19,11 +19,37 @@ void CGPDFArrayApplyFunction(CGPDFArrayRef array, CGPDFArrayApplierFunction func
     }
 }
 
+@implementation CatalogueNodeModel
+
+- (instancetype)init
+{
+    NSAssert(NO, @"CatalogueNode must use initWithName: method to be instantiated!");  //
+    return nil;
+}
+
+- (instancetype)initWithName:(NSString *)name
+{
+    if (self = [super init]) {
+        _name = name;
+    }
+    return self;
+}
+
+- (NSMutableArray *)childNodeArray
+{
+    if (_childNodeArray == nil) {
+        _childNodeArray = [[NSMutableArray alloc]init];
+    }
+    return _childNodeArray;
+}
+
+@end
+
 @implementation LxPDFParser
 {
     CGPDFDocumentRef _pdfDocument;
 }
-@synthesize filePath = _filePath;
+@synthesize filePath = _filePath, rootCatalogueNode = _rootCatalogueNode;
 
 - (void)dealloc
 {
@@ -85,6 +111,83 @@ void CGPDFArrayApplyFunction(CGPDFArrayRef array, CGPDFArrayApplierFunction func
     
     return [NSDictionary dictionaryWithDictionary:catalogDictionary];
 }
+
+#define kOutlines   "Outlines"
+#define kTitle      "Title"
+#define kFirst      "First"
+#define kNext       "Next"
+
+- (CatalogueNodeModel *)rootCatalogueNode
+{
+    if (_rootCatalogueNode != nil) {
+        return _rootCatalogueNode;
+    }
+    
+    CGPDFDictionaryRef catalogPDFDict = CGPDFDocumentGetCatalog(_pdfDocument);
+    CGPDFDictionaryRef outlinesPDFDict = 0;
+    CGPDFDictionaryGetDictionary(catalogPDFDict, kOutlines, &outlinesPDFDict);
+    CGPDFDictionaryRef outlinesFirstPDFDict = 0;
+    CGPDFDictionaryGetDictionary(outlinesPDFDict, kFirst, &outlinesFirstPDFDict);
+    CGPDFStringRef rootCatalogueNodeTitle = 0;
+    CGPDFDictionaryGetString(outlinesFirstPDFDict, kTitle, &rootCatalogueNodeTitle);
+    
+    CFStringRef rootCatalogueNodeTitleString = CGPDFStringCopyTextString(rootCatalogueNodeTitle);
+    _rootCatalogueNode = [[CatalogueNodeModel alloc]initWithName:(__bridge_transfer NSString *)rootCatalogueNodeTitleString];
+    _rootCatalogueNode.parentNode = nil;
+    _rootCatalogueNode.depth = 0;
+    [self updateCatalogueNode:_rootCatalogueNode byItsDictionary:outlinesFirstPDFDict];
+    
+    return _rootCatalogueNode;
+}
+
+- (void)updateCatalogueNode:(CatalogueNodeModel *)node byItsDictionary:(CGPDFDictionaryRef)nodeDict
+{    
+    CGPDFDictionaryRef firstPDFDict = 0;
+    CGPDFDictionaryGetDictionary(nodeDict, kFirst, &firstPDFDict);
+    CGPDFDictionaryRef nextPDFDict = 0;
+    CGPDFDictionaryGetDictionary(nodeDict, kNext, &nextPDFDict);
+    
+    CGPDFStringRef title = 0;
+    
+    if (firstPDFDict) {
+        
+        CGPDFDictionaryGetString(firstPDFDict, kTitle, &title);
+        CFStringRef titleString = CGPDFStringCopyTextString(title);
+        CatalogueNodeModel * childNode = [[CatalogueNodeModel alloc]initWithName:(__bridge_transfer NSString *)titleString];
+        childNode.depth = node.depth + 1;
+        childNode.parentNode = node;
+        [self updateCatalogueNode:childNode byItsDictionary:firstPDFDict];
+        [node.childNodeArray insertObject:childNode atIndex:0];
+    }
+    
+    if (nextPDFDict) {
+        
+        CGPDFDictionaryGetString(nextPDFDict, kTitle, &title);
+        CFStringRef titleString = CGPDFStringCopyTextString(title);
+        CatalogueNodeModel * nextNode = [[CatalogueNodeModel alloc]initWithName:(__bridge_transfer NSString *)titleString];
+        nextNode.depth = node.depth;
+        nextNode.parentNode = node.parentNode;
+        [self updateCatalogueNode:nextNode byItsDictionary:nextPDFDict];
+        [node.parentNode.childNodeArray insertObject:nextNode atIndex:0];
+    }
+}
+
+void PDFDictionaryGetKeyApplierFunction(const char *key,
+                                        CGPDFObjectRef value, void *info)
+{
+    NSMutableArray * keyArray = (__bridge NSMutableArray *)info;
+    [keyArray addObject:[NSString stringWithUTF8String:key]];
+}
+
+- (NSArray *)keyArrayOfPDFDictionary:(CGPDFDictionaryRef)pdfDictionary
+{
+    NSMutableArray * keyArray = [NSMutableArray array];
+    
+    CGPDFDictionaryApplyFunction(pdfDictionary, PDFDictionaryGetKeyApplierFunction, (__bridge void *)(keyArray));
+    
+    return [NSArray arrayWithArray:keyArray];
+}
+
 
 - (id)valueForPDFKeyPath:(NSArray *)keyPath
 {
@@ -155,7 +258,7 @@ void CGPDFArrayApplyFunction(CGPDFArrayRef array, CGPDFArrayApplierFunction func
                 CGPDFStringRef pdfString = 0;
                 executeCorrect = CGPDFObjectGetValue(value, pdfObjectType, &pdfString);
                 CFStringRef string = CGPDFStringCopyTextString(pdfString);
-                return (__bridge NSString *)string;
+                return (__bridge_transfer NSString *)string;
             }
                 break;
             case kCGPDFObjectTypeArray:
@@ -172,7 +275,6 @@ void CGPDFArrayApplyFunction(CGPDFArrayRef array, CGPDFArrayApplierFunction func
                 
                 }
                 
-                CGPDFDictionaryGetArray(pdfDictionary, [key UTF8String], &pdfArray);
                 CGPDFArrayApplyFunction(pdfArray, pdfArrayHandler, (__bridge void *)(resultArray));
                 resultValue = resultArray;
             }
@@ -266,7 +368,7 @@ void pdfDictionaryHandler(const char * key, CGPDFObjectRef value, void * info)
             CGPDFStringRef pdfString = 0;
             executeCorrect = CGPDFObjectGetValue(value, valueType, &pdfString);
             CFStringRef string = CGPDFStringCopyTextString(pdfString);
-            NSString * stringObject = (__bridge NSString *)string;
+            NSString * stringObject = (__bridge_transfer NSString *)string;
             stringObject = stringObject ? stringObject : @"";
             [newDictionary setValue:stringObject forKey:keyString];
         }
@@ -357,7 +459,7 @@ void pdfArrayHandler(size_t index, CGPDFObjectRef value, void * info)
             CGPDFStringRef pdfString = 0;
             executeCorrect = CGPDFObjectGetValue(value, valueType, &pdfString);
             CFStringRef string = CGPDFStringCopyTextString(pdfString);
-            NSString * stringObject = (__bridge NSString *)string;
+            NSString * stringObject = (__bridge_transfer NSString *)string;
             stringObject = stringObject ? stringObject : @"";
             [newArray addObject:stringObject];
         }

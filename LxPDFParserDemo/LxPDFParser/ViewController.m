@@ -5,8 +5,7 @@
 
 #import "ViewController.h"
 #import "AppDelegate.h"
-#import "LxPDFParser.h"
-#import "PDFTableViewController.h"
+#import "PDFCollectionViewController.h"
 
 @interface ViewController ()
 
@@ -17,24 +16,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    NSString * path = [[NSBundle mainBundle]pathForResource:@"PDFKitGuide" ofType:@"pdf"];
-    
-    LxPDFParser * pdfParser = [[LxPDFParser alloc]initWithPDFDocumentPath:path];
-    NSLog(@"pdfParser.filePath = %@", pdfParser.filePath);     //
-    NSLog(@"pdfParser.pageCount = %ld", pdfParser.pageCount);    //
-    NSLog(@"pdfParser.catalogDictionary = %@", pdfParser.catalogDictionary);    //
-    
-    id content = [pdfParser valueForPDFKeyPath:@[@"Pages", @"Kids", @2, @"Kids", @2, @"Contents", @0]];
-    NSLog(@"content = %@", content);    //
-    
-    PDFTableViewController * ptvc = [[PDFTableViewController alloc]init];
-    ptvc.pdfParser = pdfParser;
-    ptvc.title = @"Catalog";
-    
-    UINavigationController * ptnv = [[UINavigationController alloc]initWithRootViewController:ptvc];
-    
+    PDFCollectionViewController * pcvc = [[PDFCollectionViewController alloc]initWithNibName:@"PDFCollectionViewController" bundle:nil];
+    UINavigationController * pcnc = [[UINavigationController alloc]initWithRootViewController:pcvc];
     AppDelegate * appDelegate = [UIApplication sharedApplication].delegate;
-    appDelegate.window.rootViewController = ptnv;
+    appDelegate.window.rootViewController = pcnc;
 }
 
 - (void)didReceiveMemoryWarning {

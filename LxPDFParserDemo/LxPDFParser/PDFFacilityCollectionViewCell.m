@@ -2,16 +2,25 @@
 //  PDFFacilityCollectionViewCell.m
 //  LxPDFParser
 //
-//  Created by Gener-health-li.x on 15/2/17.
-//  Copyright (c) 2015年 Gener-health-li.x. All rights reserved.
-//
 
 #import "PDFFacilityCollectionViewCell.h"
 
 @implementation PDFFacilityCollectionViewCell
 
-- (void)awakeFromNib {
-    // Initialization code
+- (instancetype)initWithFrame:(CGRect)frame
+{
+    self = [super initWithFrame:frame];
+    if (self) {
+        
+        NSArray * nibArray = [[NSBundle mainBundle]loadNibNamed:@"PDFFacilityCollectionViewCell" owner:self options:nil];
+        
+        if (nibArray.count < 1 || ![nibArray.firstObject isKindOfClass:[UICollectionViewCell class]]) {
+            return nil;
+        }
+        
+        self = nibArray.firstObject;
+    }
+    return self;
 }
 
 @end

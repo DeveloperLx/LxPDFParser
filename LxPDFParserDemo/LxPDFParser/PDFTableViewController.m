@@ -36,8 +36,9 @@
     else if ([content isKindOfClass:[NSArray class]]) {
         
         NSArray * array = (NSArray *)content;
-        for (id obj in array) {
-            [self.contentArray addObject:[obj description]];
+        for (int i = 0; i < array.count; i++) {
+            id obj = array[i];
+            [self.contentArray addObject:[NSString stringWithFormat:@"%i、 %@", i, [obj description]]];
         }
     }
     else {
@@ -66,7 +67,6 @@
     PDFNodeDisplayCell * cell = [[PDFNodeDisplayCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CELL_REUSE_ID];
     NSString * displayContent = self.contentArray[indexPath.row];
     cell.displayLabel.text = displayContent;
-    [cell sizeToFit];
     
     return cell.frame.size.height;
 }
@@ -80,7 +80,6 @@
     
     NSString * displayContent = self.contentArray[indexPath.row];
     cell.displayLabel.text = displayContent;
-    [cell sizeToFit];
     
     return cell;
 }

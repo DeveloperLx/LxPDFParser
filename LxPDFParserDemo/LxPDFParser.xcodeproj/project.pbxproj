@@ -7,6 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		35471C591A92CC39003A738B /* PDFCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 35471C571A92CC39003A738B /* PDFCollectionViewController.m */; };
+		35471C5A1A92CC39003A738B /* PDFCollectionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 35471C581A92CC39003A738B /* PDFCollectionViewController.xib */; };
+		35471C601A92D38F003A738B /* ic_drawer_creation_notask.png in Resources */ = {isa = PBXBuildFile; fileRef = 35471C5E1A92D38F003A738B /* ic_drawer_creation_notask.png */; };
+		35471C611A92D38F003A738B /* ic_drawer_creation_notask@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 35471C5F1A92D38F003A738B /* ic_drawer_creation_notask@2x.png */; };
+		35471C651A92D3E3003A738B /* PDFFacilityCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 35471C631A92D3E3003A738B /* PDFFacilityCollectionViewCell.m */; };
+		35471C661A92D3E3003A738B /* PDFFacilityCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 35471C641A92D3E3003A738B /* PDFFacilityCollectionViewCell.xib */; };
+		35471C6A1A92FDBB003A738B /* CatalogueNodeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 35471C681A92FDBB003A738B /* CatalogueNodeCell.m */; };
+		35471C6B1A92FDBB003A738B /* CatalogueNodeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 35471C691A92FDBB003A738B /* CatalogueNodeCell.xib */; };
+		35471C6F1A933E95003A738B /* CatalogueTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 35471C6D1A933E95003A738B /* CatalogueTableViewController.m */; };
+		35471C701A933E95003A738B /* CatalogueTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 35471C6E1A933E95003A738B /* CatalogueTableViewController.xib */; };
+		35471C741A935DE5003A738B /* PDFBrowserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 35471C721A935DE5003A738B /* PDFBrowserViewController.m */; };
 		355CCBA41A763910001186ED /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 355CCBA31A763910001186ED /* main.m */; };
 		355CCBA71A763910001186ED /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 355CCBA61A763910001186ED /* AppDelegate.m */; };
 		355CCBAA1A763910001186ED /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 355CCBA91A763910001186ED /* ViewController.m */; };
@@ -16,7 +27,7 @@
 		355CCBBE1A763910001186ED /* LxPDFParserTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 355CCBBD1A763910001186ED /* LxPDFParserTests.m */; };
 		355CCBCC1A7639BD001186ED /* PDFNodeDisplayCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 355CCBCA1A7639BD001186ED /* PDFNodeDisplayCell.m */; };
 		355CCBCD1A7639BD001186ED /* PDFTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 355CCBCB1A7639BD001186ED /* PDFTableViewController.m */; };
-		35C2E3131A76659D007C1C1A /* PDFKitGuide.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 35C2E3121A76659D007C1C1A /* PDFKitGuide.pdf */; };
+		357E0BBB1A7BBD3B0005B4C2 /* drawingwithquartz2d.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 357E0BBA1A7BBD3B0005B4C2 /* drawingwithquartz2d.pdf */; };
 		35C2E3171A7665A9007C1C1A /* LxPDFParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 35C2E3161A7665A9007C1C1A /* LxPDFParser.m */; };
 /* End PBXBuildFile section */
 
@@ -31,6 +42,22 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		35471C561A92CC39003A738B /* PDFCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PDFCollectionViewController.h; sourceTree = "<group>"; };
+		35471C571A92CC39003A738B /* PDFCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PDFCollectionViewController.m; sourceTree = "<group>"; };
+		35471C581A92CC39003A738B /* PDFCollectionViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PDFCollectionViewController.xib; sourceTree = "<group>"; };
+		35471C5E1A92D38F003A738B /* ic_drawer_creation_notask.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_drawer_creation_notask.png; sourceTree = "<group>"; };
+		35471C5F1A92D38F003A738B /* ic_drawer_creation_notask@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ic_drawer_creation_notask@2x.png"; sourceTree = "<group>"; };
+		35471C621A92D3E3003A738B /* PDFFacilityCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PDFFacilityCollectionViewCell.h; sourceTree = "<group>"; };
+		35471C631A92D3E3003A738B /* PDFFacilityCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PDFFacilityCollectionViewCell.m; sourceTree = "<group>"; };
+		35471C641A92D3E3003A738B /* PDFFacilityCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PDFFacilityCollectionViewCell.xib; sourceTree = "<group>"; };
+		35471C671A92FDBB003A738B /* CatalogueNodeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CatalogueNodeCell.h; sourceTree = "<group>"; };
+		35471C681A92FDBB003A738B /* CatalogueNodeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CatalogueNodeCell.m; sourceTree = "<group>"; };
+		35471C691A92FDBB003A738B /* CatalogueNodeCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CatalogueNodeCell.xib; sourceTree = "<group>"; };
+		35471C6C1A933E95003A738B /* CatalogueTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CatalogueTableViewController.h; sourceTree = "<group>"; };
+		35471C6D1A933E95003A738B /* CatalogueTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CatalogueTableViewController.m; sourceTree = "<group>"; };
+		35471C6E1A933E95003A738B /* CatalogueTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CatalogueTableViewController.xib; sourceTree = "<group>"; };
+		35471C711A935DE5003A738B /* PDFBrowserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PDFBrowserViewController.h; sourceTree = "<group>"; };
+		35471C721A935DE5003A738B /* PDFBrowserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PDFBrowserViewController.m; sourceTree = "<group>"; };
 		355CCB9E1A763910001186ED /* LxPDFParser.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LxPDFParser.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		355CCBA21A763910001186ED /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		355CCBA31A763910001186ED /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -48,7 +75,7 @@
 		355CCBC91A7639BD001186ED /* PDFTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PDFTableViewController.h; sourceTree = "<group>"; };
 		355CCBCA1A7639BD001186ED /* PDFNodeDisplayCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PDFNodeDisplayCell.m; sourceTree = "<group>"; };
 		355CCBCB1A7639BD001186ED /* PDFTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PDFTableViewController.m; sourceTree = "<group>"; };
-		35C2E3121A76659D007C1C1A /* PDFKitGuide.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = PDFKitGuide.pdf; sourceTree = SOURCE_ROOT; };
+		357E0BBA1A7BBD3B0005B4C2 /* drawingwithquartz2d.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = drawingwithquartz2d.pdf; sourceTree = SOURCE_ROOT; };
 		35C2E3151A7665A9007C1C1A /* LxPDFParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LxPDFParser.h; sourceTree = "<group>"; };
 		35C2E3161A7665A9007C1C1A /* LxPDFParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LxPDFParser.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -71,6 +98,39 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3520055B1A9E219000B0950B /* Browser */ = {
+			isa = PBXGroup;
+			children = (
+				35471C711A935DE5003A738B /* PDFBrowserViewController.h */,
+				35471C721A935DE5003A738B /* PDFBrowserViewController.m */,
+			);
+			name = Browser;
+			sourceTree = "<group>";
+		};
+		3520055C1A9E23E100B0950B /* File structure */ = {
+			isa = PBXGroup;
+			children = (
+				355CCBC91A7639BD001186ED /* PDFTableViewController.h */,
+				355CCBCB1A7639BD001186ED /* PDFTableViewController.m */,
+				355CCBC81A7639BD001186ED /* PDFNodeDisplayCell.h */,
+				355CCBCA1A7639BD001186ED /* PDFNodeDisplayCell.m */,
+			);
+			name = "File structure";
+			sourceTree = "<group>";
+		};
+		35471C5D1A92D1C7003A738B /* CollectionView */ = {
+			isa = PBXGroup;
+			children = (
+				35471C561A92CC39003A738B /* PDFCollectionViewController.h */,
+				35471C571A92CC39003A738B /* PDFCollectionViewController.m */,
+				35471C581A92CC39003A738B /* PDFCollectionViewController.xib */,
+				35471C621A92D3E3003A738B /* PDFFacilityCollectionViewCell.h */,
+				35471C631A92D3E3003A738B /* PDFFacilityCollectionViewCell.m */,
+				35471C641A92D3E3003A738B /* PDFFacilityCollectionViewCell.xib */,
+			);
+			name = CollectionView;
+			sourceTree = "<group>";
+		};
 		355CCB951A763910001186ED = {
 			isa = PBXGroup;
 			children = (
@@ -97,11 +157,16 @@
 				355CCBA61A763910001186ED /* AppDelegate.m */,
 				355CCBA81A763910001186ED /* ViewController.h */,
 				355CCBA91A763910001186ED /* ViewController.m */,
+				35471C5E1A92D38F003A738B /* ic_drawer_creation_notask.png */,
+				35471C5F1A92D38F003A738B /* ic_drawer_creation_notask@2x.png */,
+				357E0BBA1A7BBD3B0005B4C2 /* drawingwithquartz2d.pdf */,
 				355CCBAB1A763910001186ED /* Main.storyboard */,
 				355CCBB01A763910001186ED /* LaunchScreen.xib */,
-				35C2E3121A76659D007C1C1A /* PDFKitGuide.pdf */,
 				355CCBAE1A763910001186ED /* Images.xcassets */,
-				355CCBC71A763959001186ED /* PDFTableView */,
+				35471C5D1A92D1C7003A738B /* CollectionView */,
+				3520055B1A9E219000B0950B /* Browser */,
+				355CCBC71A763959001186ED /* Catalogue */,
+				3520055C1A9E23E100B0950B /* File structure */,
 				355CCBA11A763910001186ED /* Supporting Files */,
 			);
 			path = LxPDFParser;
@@ -133,15 +198,17 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		355CCBC71A763959001186ED /* PDFTableView */ = {
+		355CCBC71A763959001186ED /* Catalogue */ = {
 			isa = PBXGroup;
 			children = (
-				355CCBC81A7639BD001186ED /* PDFNodeDisplayCell.h */,
-				355CCBCA1A7639BD001186ED /* PDFNodeDisplayCell.m */,
-				355CCBC91A7639BD001186ED /* PDFTableViewController.h */,
-				355CCBCB1A7639BD001186ED /* PDFTableViewController.m */,
+				35471C6C1A933E95003A738B /* CatalogueTableViewController.h */,
+				35471C6D1A933E95003A738B /* CatalogueTableViewController.m */,
+				35471C6E1A933E95003A738B /* CatalogueTableViewController.xib */,
+				35471C671A92FDBB003A738B /* CatalogueNodeCell.h */,
+				35471C681A92FDBB003A738B /* CatalogueNodeCell.m */,
+				35471C691A92FDBB003A738B /* CatalogueNodeCell.xib */,
 			);
-			name = PDFTableView;
+			name = Catalogue;
 			sourceTree = "<group>";
 		};
 		35C2E3141A7665A9007C1C1A /* LxPDFParser */ = {
@@ -234,10 +301,16 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				35471C661A92D3E3003A738B /* PDFFacilityCollectionViewCell.xib in Resources */,
 				355CCBAD1A763910001186ED /* Main.storyboard in Resources */,
+				357E0BBB1A7BBD3B0005B4C2 /* drawingwithquartz2d.pdf in Resources */,
 				355CCBB21A763910001186ED /* LaunchScreen.xib in Resources */,
+				35471C6B1A92FDBB003A738B /* CatalogueNodeCell.xib in Resources */,
+				35471C601A92D38F003A738B /* ic_drawer_creation_notask.png in Resources */,
+				35471C701A933E95003A738B /* CatalogueTableViewController.xib in Resources */,
+				35471C611A92D38F003A738B /* ic_drawer_creation_notask@2x.png in Resources */,
 				355CCBAF1A763910001186ED /* Images.xcassets in Resources */,
-				35C2E3131A76659D007C1C1A /* PDFKitGuide.pdf in Resources */,
+				35471C5A1A92CC39003A738B /* PDFCollectionViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -255,12 +328,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				35471C651A92D3E3003A738B /* PDFFacilityCollectionViewCell.m in Sources */,
 				355CCBAA1A763910001186ED /* ViewController.m in Sources */,
 				355CCBCC1A7639BD001186ED /* PDFNodeDisplayCell.m in Sources */,
 				355CCBCD1A7639BD001186ED /* PDFTableViewController.m in Sources */,
 				355CCBA71A763910001186ED /* AppDelegate.m in Sources */,
+				35471C591A92CC39003A738B /* PDFCollectionViewController.m in Sources */,
+				35471C6A1A92FDBB003A738B /* CatalogueNodeCell.m in Sources */,
 				355CCBA41A763910001186ED /* main.m in Sources */,
 				35C2E3171A7665A9007C1C1A /* LxPDFParser.m in Sources */,
+				35471C6F1A933E95003A738B /* CatalogueTableViewController.m in Sources */,
+				35471C741A935DE5003A738B /* PDFBrowserViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
