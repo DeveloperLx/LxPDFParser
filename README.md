@@ -19,6 +19,9 @@ How to use
     
     id content = [pdfParser valueForPDFKeyPath:@[@"Pages", @"Kids", @2, @"Kids", @2, @"Contents", @0]];
     NSLog(@"content = %@", content);    //
+    
+    .............
+    
 Be careful            
 -----------
     Use NSString object represents NSDictionary object's key and NSNumber object represents NSArray object's index.
